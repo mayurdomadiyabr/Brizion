@@ -1,4 +1,5 @@
 @import './brizion-tokens.css';
+@import './brizion-shared.css';
 
 * { box-sizing: border-box; }
 
