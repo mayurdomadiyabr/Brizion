@@ -13,6 +13,7 @@ export function AnnouncementBar({ locale }: { locale: Locale }) {
 
   return (
     <div
+      className="brz-announce"
       style={{
         background: 'var(--brz-ink)',
         color: '#fff',

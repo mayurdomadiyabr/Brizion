@@ -26,6 +26,7 @@ export function Nav({ locale }: { locale: Locale }) {
 
   return (
     <nav
+      className="brz-nav"
       style={{
         position: 'sticky',
         top: 0,

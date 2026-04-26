@@ -179,3 +179,159 @@ a { color: inherit; text-decoration: none; }
 
 .crumb-sm { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #6B6B6B; font-weight: 600; margin-bottom: 14px; }
 .crumb-sm span { color: #000; }
+
+/* ============================================================
+   Responsive layer — tablet + mobile.
+   Targets shared classes AND inline grid styles via attribute
+   selectors scoped to <main> / <footer.brz-footer> so that page
+   components don't need to be rewritten.
+   ============================================================ */
+
+/* Prevent horizontal overflow on small screens */
+html, body { overflow-x: hidden; }
+img, video, svg { max-width: 100%; height: auto; }
+
+/* Tablet: narrower wrappers, 2-col where 4-col was */
+@media (max-width: 960px) {
+  .brz-wrap, .wrap { padding: 0 32px; }
+
+  /* Nav: tighter padding, allow wrap */
+  nav.brz-nav { padding: 14px 24px !important; gap: 16px !important; }
+  nav.brz-nav > div:first-child { gap: 18px !important; flex-wrap: wrap; font-size: 12px; }
+  nav.brz-nav > a { font-size: 22px !important; letter-spacing: 0.22em !important; }
+  nav.brz-nav > div:last-child { gap: 14px !important; }
+
+  /* Footer */
+  footer.brz-footer { padding: 72px 32px 40px !important; }
+  footer.brz-footer .brz-foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 32px !important; }
+
+  /* Class-based grids → friendlier tablet layouts */
+  .shop-grid { grid-template-columns: 200px 1fr !important; gap: 32px !important; }
+  .p-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px !important; }
+  .pdp-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .pdp-gallery { position: static !important; }
+  .clinical-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 28px !important; }
+  .foot-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }
+  .cart-grid, .chk-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* Inline 4-col grids in <main> → 2-col */
+  body main [style*="grid-template-columns"][style*="repeat(4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  /* Inline 3-col grids in <main> → 2-col */
+  body main [style*="grid-template-columns"][style*="repeat(3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Mobile: stack everything */
+@media (max-width: 720px) {
+  .brz-wrap, .wrap { padding: 0 20px; }
+
+  /* Reduce verbose section padding from inline styles */
+  body > main > section { padding-top: 56px !important; padding-bottom: 64px !important; }
+
+  /* Heading scale-down for hardcoded inline font sizes */
+  body main h1 { font-size: clamp(34px, 8vw, 48px) !important; line-height: 1.05 !important; }
+  body main h2 { font-size: clamp(28px, 6.5vw, 38px) !important; line-height: 1.1 !important; }
+  body main h3 { font-size: 20px !important; line-height: 1.2 !important; }
+  body main h1 em, body main h2 em, body main h3 em { font-size: inherit !important; }
+
+  /* Page head spacing */
+  .page-head { padding: 48px 0 36px !important; }
+  .page-head h1 { font-size: clamp(34px, 8vw, 48px) !important; }
+  .page-head .lead { font-size: 15px !important; }
+
+  /* Nav: stack into a single, centered column */
+  nav.brz-nav {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    padding: 12px 16px !important;
+    gap: 8px !important;
+  }
+  nav.brz-nav > div:first-child {
+    justify-content: center !important;
+    gap: 14px !important;
+    font-size: 12px !important;
+  }
+  nav.brz-nav > a { font-size: 20px !important; letter-spacing: 0.2em !important; }
+  nav.brz-nav > div:last-child { justify-content: center !important; gap: 12px !important; }
+
+  /* Announcement bar: smaller, allow wrap */
+  .brz-announce { font-size: 10px !important; letter-spacing: 0.12em !important; padding: 8px 12px !important; }
+
+  /* Footer: single column, dense spacing */
+  footer.brz-footer { padding: 56px 20px 32px !important; }
+  footer.brz-footer .brz-foot-grid { grid-template-columns: 1fr !important; gap: 28px !important; padding-top: 36px !important; padding-bottom: 36px !important; }
+  footer.brz-footer .brz-foot-top { gap: 20px !important; padding-bottom: 36px !important; }
+  footer.brz-footer .brz-foot-top form { width: 100%; flex-wrap: wrap; }
+  footer.brz-footer .brz-foot-top form input { flex: 1 1 220px !important; width: auto !important; }
+  footer.brz-footer .brz-foot-bot { flex-direction: column; align-items: flex-start; gap: 12px !important; }
+
+  /* Class-based grids → stack */
+  .shop-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .p-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 14px !important; }
+  .clinical-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .foot-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .pdp-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .pdp-bullets { grid-template-columns: 1fr !important; }
+  .pdp-thumbs { grid-template-columns: repeat(4, 1fr) !important; gap: 8px !important; }
+  .pdp-cta { flex-wrap: wrap !important; }
+  .pdp-cta .btn-primary { flex: 1 1 100% !important; }
+  .pdp-info h1 { font-size: 36px !important; }
+  .cart-grid, .chk-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .chk-row2, .chk-row3 { grid-template-columns: 1fr !important; }
+  .summary { position: static !important; padding: 24px !important; }
+  .cart-row { grid-template-columns: 80px 1fr !important; gap: 14px !important; padding: 18px 0 !important; }
+  .cart-row .price { grid-column: 2 / 3 !important; text-align: left !important; padding-top: 6px; }
+  .cart-img { width: 80px !important; height: 96px !important; }
+  .pager { padding-top: 32px !important; }
+  .clinical { padding: 56px 0 !important; }
+  .clinical h2 { margin-bottom: 32px !important; }
+  .clinical-stat .big { font-size: 44px !important; }
+  .foot { padding: 48px 0 24px !important; }
+  .foot-wm { font-size: 32px !important; }
+  .foot-bot { flex-direction: column; align-items: flex-start; gap: 10px !important; }
+
+  /* Inline grids in <main>: collapse to single column */
+  body main [style*="grid-template-columns"][style*="repeat(4"],
+  body main [style*="grid-template-columns"][style*="repeat(3"],
+  body main [style*="grid-template-columns"][style*="repeat(2"],
+  body main [style*="grid-template-columns"][style*="1fr 1fr"],
+  body main [style*="grid-template-columns"][style*=".1fr 1fr"],
+  body main [style*="grid-template-columns"][style*=".2fr 1fr"],
+  body main [style*="grid-template-columns"][style*=".4fr 1fr"],
+  body main [style*="grid-template-columns"][style*=".6fr 1fr"],
+  body main [style*="grid-template-columns"][style*="2fr 1fr"],
+  body main [style*="grid-template-columns"][style*="2fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Cart row inline grid: keep image-left, info-right */
+  body main [style*="grid-template-columns"][style*="120px 1fr auto"] {
+    grid-template-columns: 80px 1fr !important;
+    gap: 14px !important;
+  }
+  body main [style*="grid-template-columns"][style*="120px 1fr auto"] > :last-child {
+    grid-column: 1 / -1 !important;
+    text-align: left;
+  }
+
+  /* Editorial split (no border) — break inline section padding */
+  body main section[style*="100px 80px"] { padding: 56px 24px !important; }
+  body main section[style*="96px 0 120px"],
+  body main section[style*="120px 0"],
+  body main section[style*="64px 0 96px"],
+  body main section[style*="56px 0 120px"] { padding-top: 56px !important; padding-bottom: 64px !important; }
+}
+
+/* Very small phones: tighten further */
+@media (max-width: 420px) {
+  .brz-wrap, .wrap { padding: 0 16px; }
+  .p-grid { grid-template-columns: 1fr !important; }
+  nav.brz-nav > div:first-child { font-size: 11px !important; gap: 10px !important; }
+  nav.brz-nav > a { font-size: 18px !important; }
+  body main h1 { font-size: 30px !important; }
+  body main h2 { font-size: 26px !important; }
+}

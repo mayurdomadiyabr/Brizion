@@ -46,6 +46,7 @@ export function Footer({
 
   return (
     <footer
+      className="brz-footer"
       style={{
         background: 'var(--brz-ink)',
         color: '#fff',
@@ -54,6 +55,7 @@ export function Footer({
     >
       <div style={{ maxWidth: 1320, margin: '0 auto' }}>
         <div
+          className="brz-foot-top"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -137,6 +139,7 @@ export function Footer({
           </form>
         </div>
         <div
+          className="brz-foot-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
@@ -170,6 +173,7 @@ export function Footer({
           ])}
         </div>
         <div
+          className="brz-foot-bot"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
