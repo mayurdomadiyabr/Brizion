@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><title>Brizion — Reviews</title>
+<meta name="viewport" content="width=1440,initial-scale=1">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="_shared.css">
+<style>
+.rv-hero { padding: 90px 0 64px; border-bottom: 1px solid #E5E5E5; }
+.rv-hero .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: end; }
+.rv-hero h1 { font-family: var(--brz-font-display); font-weight: 600; font-size: clamp(56px, 7vw, 96px); line-height: 1; letter-spacing: -0.03em; margin: 18px 0 24px; text-wrap: balance; }
+.rv-hero h1 em { font-family: var(--brz-font-serif); font-style: italic; }
+.rv-hero p { font-family: var(--brz-font-serif); font-style: italic; font-size: 19px; color: #4A4A4A; margin: 0; max-width: 500px; line-height: 1.45; }
+.rv-score { border: 1px solid #000; padding: 28px; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
+.rv-score .num { font-family: var(--brz-font-display); font-size: 84px; font-weight: 600; letter-spacing: -0.03em; line-height: 0.9; }
+.rv-score .stars { font-size: 18px; letter-spacing: 0.1em; margin-bottom: 10px; }
+.rv-score .count { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #6B6B6B; font-weight: 600; margin-bottom: 14px; }
+.rv-score .bars { display: flex; flex-direction: column; gap: 4px; }
+.rv-score .bar-row { display: grid; grid-template-columns: 20px 1fr 30px; gap: 8px; align-items: center; font-size: 10px; color: #9A9A9A; font-family: ui-monospace, Menlo, monospace; }
+.rv-score .bar { height: 6px; background: #E5E5E5; position: relative; }
+.rv-score .bar b { position: absolute; left: 0; top: 0; bottom: 0; background: #000; }
+
+.rv-filters { padding: 28px 0; border-bottom: 1px solid #E5E5E5; }
+.rv-filters .wrap { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.rv-filters .pill { padding: 10px 16px; border: 1px solid #E5E5E5; font-size: 12px; letter-spacing: 0.04em; cursor: pointer; background: #fff; }
+.rv-filters .pill.on { background: #000; color: #fff; border-color: #000; }
+.rv-filters .count { margin-left: auto; font-size: 11px; color: #6B6B6B; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+.rv-filters .sort { font-size: 12px; }
+.rv-filters .sort b { font-weight: 700; }
+
+.rv-list { padding: 56px 0 80px; }
+.rv-list .wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.rv-card { border: 1px solid #E5E5E5; padding: 32px; display: flex; flex-direction: column; }
+.rv-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.rv-avatar { width: 44px; height: 44px; border-radius: 50%; background: #E5E5E5; display: flex; align-items: center; justify-content: center; font-family: var(--brz-font-display); font-weight: 600; font-size: 15px; color: #4A4A4A; }
+.rv-who { display: flex; gap: 14px; align-items: center; }
+.rv-who b { display: block; font-size: 14px; margin-bottom: 2px; }
+.rv-who span { font-size: 11px; color: #9A9A9A; letter-spacing: 0.04em; }
+.rv-stars { font-size: 12px; letter-spacing: 0.1em; }
+.rv-title { font-family: var(--brz-font-display); font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin: 16px 0 10px; text-wrap: balance; }
+.rv-title em { font-family: var(--brz-font-serif); font-style: italic; }
+.rv-body { font-family: var(--brz-font-serif); font-size: 16px; line-height: 1.55; color: #2A2A2A; margin: 0 0 22px; }
+.rv-tags { display: flex; gap: 6px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid #F2F2F2; margin-bottom: 14px; }
+.rv-tags span { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6B6B; font-weight: 600; padding: 5px 10px; background: #F7F7F7; }
+.rv-foot { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #9A9A9A; letter-spacing: 0.04em; margin-top: auto; }
+.rv-foot .product { font-weight: 600; color: #000; letter-spacing: 0.1em; text-transform: uppercase; }
+.rv-verified { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #000; font-weight: 600; }
+
+.write-cta { padding: 80px 0; background: #FAFAFA; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; }
+.write-cta .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.write-cta h2 { font-family: var(--brz-font-display); font-weight: 600; font-size: 44px; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; }
+.write-cta h2 em { font-family: var(--brz-font-serif); font-style: italic; }
+.write-cta p { font-family: var(--brz-font-serif); font-style: italic; color: #4A4A4A; font-size: 17px; margin: 0 0 24px; max-width: 440px; }
+</style>
+</head><body>
+
+<div class="announce">Free shipping on orders $50+ · Clinically proven results</div>
+<nav class="nav"><div class="nav-inner">
+  <div class="nav-left"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="science.html">Science</a><a href="reviews.html" class="on">Reviews</a><a href="journal.html">Journal</a></div>
+  <div class="wordmark"><a href="index.html">BRIZION</a></div>
+  <div class="nav-right"><a>Search</a><a href="account.html">Account</a><a href="cart.html" class="cart-pill">Cart 2</a></div>
+</div></nav>
+
+<section class="rv-hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">Customer Reviews</div>
+    <h1>What 12,000 people are <em>actually saying</em>.</h1>
+    <p>Every review on this page is verified. We don't filter negatives. We respond to every one.</p>
+  </div>
+  <div class="rv-score">
+    <div class="num">4.8</div>
+    <div>
+      <div class="stars">★★★★★</div>
+      <div class="count">12,414 Reviews</div>
+      <div class="bars">
+        <div class="bar-row"><span>5★</span><div class="bar"><b style="width:82%"></b></div><span>82%</span></div>
+        <div class="bar-row"><span>4★</span><div class="bar"><b style="width:12%"></b></div><span>12%</span></div>
+        <div class="bar-row"><span>3★</span><div class="bar"><b style="width:4%"></b></div><span>4%</span></div>
+        <div class="bar-row"><span>2★</span><div class="bar"><b style="width:1%"></b></div><span>1%</span></div>
+        <div class="bar-row"><span>1★</span><div class="bar"><b style="width:1%"></b></div><span>1%</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="rv-filters"><div class="wrap">
+  <span class="pill on">All reviews</span>
+  <span class="pill">5 stars</span>
+  <span class="pill">Firm &amp; Lift Serum</span>
+  <span class="pill">Overnight Cream</span>
+  <span class="pill">Sensitive skin</span>
+  <span class="pill">Over 40</span>
+  <span class="count">12,414 total</span>
+  <span class="sort">Sort · <b>Most recent ▾</b></span>
+</div></section>
+
+<section class="rv-list"><div class="wrap">
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">SC</div><div><b>Samira C.</b><span>Verified · Sensitive, Age 42</span></div></div>
+      <div class="rv-stars">★★★★★</div>
+    </div>
+    <h3 class="rv-title">The only retinoid I've been able to <em>actually stick with</em>.</h3>
+    <p class="rv-body">I've tried three prescription retinoids and always gave up in the irritation phase. This is the first one I've made it to week 8 on, and the fine lines around my eyes look genuinely softer. No flaking, no redness. My derm approved.</p>
+    <div class="rv-tags"><span>Firming</span><span>Fine Lines</span><span>Sensitive OK</span></div>
+    <div class="rv-foot"><span class="product">Firm &amp; Lift Serum · 30ml</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">JM</div><div><b>Jordan M.</b><span>Verified · Combination, Age 31</span></div></div>
+      <div class="rv-stars">★★★★★</div>
+    </div>
+    <h3 class="rv-title">Packaging is stunning, formula is <em>better</em>.</h3>
+    <p class="rv-body">Bought it for the aesthetic, stayed for the results. Six weeks in and my skin genuinely looks more even. The dropper is weighted and doesn't drip. Small thing but it's the details.</p>
+    <div class="rv-tags"><span>Glow</span><span>Tone</span><span>Texture</span></div>
+    <div class="rv-foot"><span class="product">Overnight Renewal Cream · 50ml</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">RO</div><div><b>Rita O.</b><span>Verified · Dry, Age 56</span></div></div>
+      <div class="rv-stars">★★★★☆</div>
+    </div>
+    <h3 class="rv-title">Does what it says — <em>expensive</em> but worth it.</h3>
+    <p class="rv-body">The 30ml lasts me about 6 weeks. That's pricey per month but compared to what I was spending at Sephora on things that didn't work, it's a wash. Not docking a star for price — docking for the bottle design being hard to see how much is left.</p>
+    <div class="rv-tags"><span>Anti-aging</span><span>Hydration</span></div>
+    <div class="rv-foot"><span class="product">Firm &amp; Lift Serum · 30ml</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">TL</div><div><b>Theo L.</b><span>Verified · Oily, Age 28</span></div></div>
+      <div class="rv-stars">★★★★★</div>
+    </div>
+    <h3 class="rv-title">My derm recommended it. She was <em>right</em>.</h3>
+    <p class="rv-body">First retinoid I've tried as someone with acne-prone, oily skin. Two months in and my texture is the smoothest it's been since my twenties. I use it three nights a week and it plays well with my BHA on off nights.</p>
+    <div class="rv-tags"><span>Texture</span><span>Acne-safe</span><span>Tolerance</span></div>
+    <div class="rv-foot"><span class="product">Firm &amp; Lift Serum · 30ml</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">AP</div><div><b>Ana P.</b><span>Verified · Normal, Age 38</span></div></div>
+      <div class="rv-stars">★★★★★</div>
+    </div>
+    <h3 class="rv-title">The <em>cleanser</em> is the sleeper hit.</h3>
+    <p class="rv-body">I came for the serum, but the cleanser is what I'll repurchase forever. Doesn't strip, rinses clean, no tightness. My skin feels calm after, not squeaky. Rare in a gel cleanser at this price.</p>
+    <div class="rv-tags"><span>Gentle</span><span>Non-stripping</span></div>
+    <div class="rv-foot"><span class="product">Daily Gentle Cleanser</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">MC</div><div><b>Marcus C.</b><span>Verified · Combination, Age 45</span></div></div>
+      <div class="rv-stars">★★★☆☆</div>
+    </div>
+    <h3 class="rv-title">Works but I wish the <em>bottle lasted longer</em>.</h3>
+    <p class="rv-body">Results are real — skin feels firmer and my morning face looks more rested. But at 30ml/$40 I'm going through it faster than feels good. Brand, please make a larger value size. Otherwise solid formula.</p>
+    <div class="rv-tags"><span>Value</span><span>Repurchase</span></div>
+    <div class="rv-foot"><span class="product">Firm &amp; Lift Serum · 30ml</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">HO</div><div><b>Hannah O.</b><span>Verified · Sensitive, Age 34</span></div></div>
+      <div class="rv-stars">★★★★★</div>
+    </div>
+    <h3 class="rv-title">My skin feels like it did <em>ten years ago</em>.</h3>
+    <p class="rv-body">I'm 34 but my skin got reactive after pregnancy and nothing worked. The overnight cream has genuinely rebuilt my barrier — no stinging, no redness, and my morning face is soft and hydrated in a way I'd forgotten was possible.</p>
+    <div class="rv-tags"><span>Barrier</span><span>Hydration</span><span>Post-natal</span></div>
+    <div class="rv-foot"><span class="product">Overnight Renewal Cream · 50ml</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+  <div class="rv-card">
+    <div class="rv-head">
+      <div class="rv-who"><div class="rv-avatar">DK</div><div><b>Dana K.</b><span>Verified · Dry, Age 49</span></div></div>
+      <div class="rv-stars">★★★★★</div>
+    </div>
+    <h3 class="rv-title">Worth every penny. Finally, <em>honest skincare</em>.</h3>
+    <p class="rv-body">I love that the bottle tells me the concentration. I love that the studies are published on the site. I love that I don't have to smell like a perfume shop to take care of my skin. Everything about this brand is grown-up.</p>
+    <div class="rv-tags"><span>Brand</span><span>Fragrance-free</span></div>
+    <div class="rv-foot"><span class="product">The Firming Ritual · Bundle</span><span class="rv-verified">✓ Verified</span></div>
+  </div>
+
+</div></section>
+
+<section class="write-cta"><div class="wrap">
+  <div>
+    <div class="eyebrow">Used it? Say so.</div>
+    <h2>Write a <em>review</em>.</h2>
+    <p>We read every one, publish every one (even the unflattering ones), and respond within 48 hours.</p>
+    <button class="btn-primary">Write a review</button>
+  </div>
+  <div style="font-family: var(--brz-font-serif); font-style: italic; font-size: 19px; color: #4A4A4A; line-height: 1.55; border-left: 2px solid #000; padding-left: 24px;">
+    "We don't hide the 1-star reviews. We respond to them. Sometimes we change the formula because of them."
+    <div style="margin-top: 18px; font-family: var(--brz-font-sans); font-style: normal; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #6B6B6B; font-weight: 600;">— The Brizion Team</div>
+  </div>
+</div></section>
+
+<footer class="foot"><div class="wrap">
+  <div class="foot-grid">
+    <div><div class="foot-wm">BRIZION</div><p class="foot-tag">Dermatologist-grade skincare. Real ingredients. Real results.</p></div>
+    <div><h4>Shop</h4><ul><li><a href="shop.html">Best Sellers</a></li><li><a href="shop.html">Serums</a></li><li><a href="shop.html">Moisturizers</a></li><li><a href="shop.html">Cleansers</a></li><li><a href="shop.html">Bundles</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="contact.html">Shipping</a></li><li><a href="contact.html">Returns</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+    <div><h4>Brand</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="science.html">Science</a></li><li><a href="journal.html">Journal</a></li><li><a href="about.html">Sustainability</a></li></ul></div>
+  </div>
+  <div class="foot-bot"><span>© 2026 Brizion. All rights reserved.</span><span>Privacy · Terms · Accessibility</span></div>
+</div></footer>
+</body></html>

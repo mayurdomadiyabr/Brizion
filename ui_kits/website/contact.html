@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><title>Brizion — Help &amp; Contact</title>
+<meta name="viewport" content="width=1440,initial-scale=1">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="_shared.css">
+<style>
+.hp-hero { padding: 90px 0 64px; border-bottom: 1px solid #E5E5E5; }
+.hp-hero h1 { font-family: var(--brz-font-display); font-weight: 600; font-size: clamp(56px, 7vw, 96px); line-height: 1; letter-spacing: -0.03em; margin: 18px 0 24px; text-wrap: balance; }
+.hp-hero h1 em { font-family: var(--brz-font-serif); font-style: italic; }
+.hp-hero p { font-family: var(--brz-font-serif); font-style: italic; font-size: 20px; color: #4A4A4A; max-width: 560px; margin: 0; }
+.hp-search { max-width: 640px; margin-top: 32px; position: relative; }
+.hp-search input { width: 100%; padding: 20px 22px; border: 1px solid #000; font-family: inherit; font-size: 15px; background: #fff; }
+.hp-search button { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #000; color: #fff; border: none; padding: 12px 20px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; cursor: pointer; }
+
+.hp-cats { padding: 56px 0; border-bottom: 1px solid #E5E5E5; }
+.hp-cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.hp-cat { border: 1px solid #E5E5E5; padding: 28px 24px; cursor: pointer; }
+.hp-cat:hover { border-color: #000; }
+.hp-cat .code { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #9A9A9A; margin-bottom: 22px; }
+.hp-cat h3 { font-family: var(--brz-font-display); font-weight: 600; font-size: 20px; margin: 0 0 6px; letter-spacing: -0.01em; }
+.hp-cat p { font-size: 12px; color: #6B6B6B; margin: 0 0 20px; line-height: 1.5; }
+.hp-cat .arrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #000; font-weight: 700; }
+
+.hp-main { padding: 96px 0 80px; }
+.hp-main .wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; }
+.hp-main h2 { font-family: var(--brz-font-display); font-weight: 600; font-size: 36px; letter-spacing: -0.02em; margin: 0 0 10px; }
+.hp-main h2 em { font-family: var(--brz-font-serif); font-style: italic; }
+.hp-main .sub { font-family: var(--brz-font-serif); font-style: italic; font-size: 15px; color: #6B6B6B; margin: 0 0 32px; }
+.faq-grp { margin-bottom: 40px; }
+.faq-grp .grp-label { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #6B6B6B; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #000; }
+.faq { border-bottom: 1px solid #E5E5E5; }
+.faq summary { padding: 20px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 600; letter-spacing: -0.005em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 22px; font-weight: 400; color: #6B6B6B; }
+.faq[open] summary::after { content: "−"; }
+.faq p { font-family: var(--brz-font-serif); font-size: 15px; line-height: 1.6; color: #4A4A4A; margin: 0 0 22px; max-width: 560px; }
+
+.ship-table { padding: 32px 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; }
+.ship-table .row { display: grid; grid-template-columns: 1.2fr 1fr auto; gap: 20px; padding: 14px 0; border-bottom: 1px solid #F2F2F2; font-size: 13px; align-items: center; }
+.ship-table .row:last-child { border-bottom: none; }
+.ship-table .row b { font-weight: 700; }
+.ship-table .row .time { color: #6B6B6B; }
+.ship-table .row .cost { font-family: ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 700; }
+
+.hp-aside { position: sticky; top: 100px; align-self: start; display: flex; flex-direction: column; gap: 16px; }
+.hp-contact { border: 1px solid #000; padding: 28px; }
+.hp-contact h3 { font-family: var(--brz-font-display); font-weight: 600; font-size: 22px; margin: 0 0 6px; letter-spacing: -0.01em; }
+.hp-contact h3 em { font-family: var(--brz-font-serif); font-style: italic; }
+.hp-contact p { font-family: var(--brz-font-serif); font-style: italic; font-size: 13.5px; color: #6B6B6B; margin: 0 0 20px; line-height: 1.5; }
+.hp-contact .field { margin-bottom: 12px; }
+.hp-contact label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 5px; }
+.hp-contact input, .hp-contact textarea { width: 100%; padding: 12px; border: 1px solid #E5E5E5; background: #fff; font-family: inherit; font-size: 13px; outline: none; }
+.hp-contact textarea { min-height: 100px; resize: vertical; }
+.hp-contact .btn-primary { width: 100%; margin-top: 10px; padding: 14px; }
+
+.hp-channel { background: #FAFAFA; padding: 22px; }
+.hp-channel .eye { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: #6B6B6B; margin-bottom: 10px; }
+.hp-channel-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E5E5E5; font-size: 13px; align-items: baseline; }
+.hp-channel-row:last-child { border-bottom: none; }
+.hp-channel-row b { font-weight: 700; }
+.hp-channel-row span { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6B6B6B; }
+
+.hp-promise { background: #0A0A0A; color: #fff; padding: 60px 0; }
+.hp-promise .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.hp-promise h2 { font-family: var(--brz-font-display); font-weight: 600; font-size: 40px; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.hp-promise h2 em { font-family: var(--brz-font-serif); font-style: italic; }
+.hp-promise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.hp-promise-grid div b { font-family: var(--brz-font-display); font-weight: 600; font-size: 28px; display: block; margin-bottom: 6px; letter-spacing: -0.01em; }
+.hp-promise-grid div p { font-family: var(--brz-font-serif); font-style: italic; font-size: 13px; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.5; }
+</style>
+</head><body>
+
+<div class="announce">Free shipping on orders $50+ · Clinically proven results</div>
+<nav class="nav"><div class="nav-inner">
+  <div class="nav-left"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="science.html">Science</a><a href="reviews.html">Reviews</a><a href="journal.html">Journal</a></div>
+  <div class="wordmark"><a href="index.html">BRIZION</a></div>
+  <div class="nav-right"><a>Search</a><a href="account.html">Account</a><a href="cart.html" class="cart-pill">Cart 2</a></div>
+</div></nav>
+
+<section class="hp-hero"><div class="wrap">
+  <div class="eyebrow">Help &amp; Contact</div>
+  <h1>How can we <em>help</em>?</h1>
+  <p>Most answers are below. If you don't find yours, write to us on the right — we respond within 24 hours, seven days a week.</p>
+  <div class="hp-search">
+    <input placeholder="Search — e.g. 'when will my order ship'">
+    <button>Search</button>
+  </div>
+</div></section>
+
+<section class="hp-cats"><div class="wrap">
+  <div class="hp-cat-grid">
+    <div class="hp-cat"><div class="code">01</div><h3>Orders &amp; Shipping</h3><p>Tracking, delivery windows, customs</p><div class="arrow">14 articles →</div></div>
+    <div class="hp-cat"><div class="code">02</div><h3>Returns &amp; Refunds</h3><p>30-day returns, refund timelines</p><div class="arrow">08 articles →</div></div>
+    <div class="hp-cat"><div class="code">03</div><h3>Subscriptions</h3><p>Pause, swap, skip, cancel</p><div class="arrow">11 articles →</div></div>
+    <div class="hp-cat"><div class="code">04</div><h3>Product &amp; Skin</h3><p>Concerns, ingredient questions</p><div class="arrow">22 articles →</div></div>
+  </div>
+</div></section>
+
+<section class="hp-main"><div class="wrap">
+  <div>
+    <h2>Frequently <em>asked</em>.</h2>
+    <p class="sub">The top 20 questions from our customers, with real answers.</p>
+
+    <div class="faq-grp">
+      <div class="grp-label">Orders &amp; Shipping</div>
+      <details class="faq" open><summary>When will my order ship?</summary><p>Orders placed before 2 PM ET Monday–Friday ship the same business day from our Brooklyn warehouse. Weekend orders ship Monday morning. You'll get a tracking number by email within 2 hours of shipment.</p></details>
+      <details class="faq"><summary>Do you ship internationally?</summary><p>Yes — to 14 countries. Shipping takes 5–10 business days and customs/duties are calculated at checkout. We don't currently ship retinoids to countries where they require prescription (check a full list on our shipping page).</p></details>
+      <details class="faq"><summary>My package says delivered but I can't find it.</summary><p>First, check with neighbors and building mailrooms. If it's been 48 hours with no sign, email us with your order number and we'll file a carrier claim and reship at no charge.</p></details>
+
+      <div class="ship-table">
+        <div class="row"><b>Standard · Domestic</b><span class="time">3–5 business days</span><span class="cost">Free over $50</span></div>
+        <div class="row"><b>Expedited · Domestic</b><span class="time">2 business days</span><span class="cost">$8.00</span></div>
+        <div class="row"><b>Overnight · Domestic</b><span class="time">1 business day</span><span class="cost">$22.00</span></div>
+        <div class="row"><b>International</b><span class="time">5–10 business days</span><span class="cost">From $18.00</span></div>
+      </div>
+    </div>
+
+    <div class="faq-grp">
+      <div class="grp-label">Returns &amp; Refunds</div>
+      <details class="faq"><summary>What's your return policy?</summary><p>30 days from delivery on any product — opened or unopened. We cover the return shipping. Refunds land on your original payment method within 5 business days of our warehouse receiving the return.</p></details>
+      <details class="faq"><summary>I had a reaction. What now?</summary><p>Stop using immediately and email us with a photo if possible. We'll refund in full, talk you through what might have caused it, and — if you want — recommend a gentler alternative from the line.</p></details>
+      <details class="faq"><summary>Can I return a subscription order?</summary><p>Yes, same 30-day policy. You can also pause or cancel the subscription itself from your account at any time, no questions asked.</p></details>
+    </div>
+
+    <div class="faq-grp">
+      <div class="grp-label">Subscriptions</div>
+      <details class="faq"><summary>How do I pause or cancel?</summary><p>Open your account, tap Subscriptions, and use the Pause or Cancel button on any active subscription. No phone call, no retention script, no friction.</p></details>
+      <details class="faq"><summary>Can I change the delivery frequency?</summary><p>Yes. Every subscription lets you choose between 30, 45, 60, or 90-day cycles. You can change it as often as you like from your account.</p></details>
+      <details class="faq"><summary>What's the subscription discount?</summary><p>15% off every delivery, forever. First-time subscribers also get free shipping and a travel-size sample with their first box.</p></details>
+    </div>
+
+    <div class="faq-grp">
+      <div class="grp-label">Product &amp; Skin</div>
+      <details class="faq"><summary>Can I use the serum while pregnant?</summary><p>The Firm &amp; Lift Serum contains retinal, which is not recommended during pregnancy or breastfeeding. Our Bakuchiol Concentrate is a pregnancy-safe alternative with similar benefits. Always check with your OBGYN first.</p></details>
+      <details class="faq"><summary>In what order should I apply your products?</summary><p>Thinnest to thickest: cleanser → serum → oil (optional) → moisturizer. In the AM, finish with SPF. In the PM, the Overnight Renewal Cream is the last step.</p></details>
+    </div>
+  </div>
+
+  <aside class="hp-aside">
+    <div class="hp-contact">
+      <h3>Write to <em>us</em>.</h3>
+      <p>Real humans, responding within 24 hours. Seven days a week.</p>
+      <div class="field"><label>Your email</label><input value="hannah.okafor@studio.com"></div>
+      <div class="field"><label>Topic</label><input value="Question about my subscription"></div>
+      <div class="field"><label>How can we help?</label><textarea>Hi — I'd like to pause my subscription for the next delivery. Is that something you can do on your end, or do I need to?</textarea></div>
+      <button class="btn-primary">Send message</button>
+      <p style="margin-top:14px;font-family:var(--brz-font-sans);font-style:normal;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#9A9A9A">Avg. response · 3h 12m</p>
+    </div>
+
+    <div class="hp-channel">
+      <div class="eye">Other ways to reach us</div>
+      <div class="hp-channel-row"><b>Email</b><span>hi@brizion.co</span></div>
+      <div class="hp-channel-row"><b>Phone (M–F 9–5 ET)</b><span>1-800-BRIZION</span></div>
+      <div class="hp-channel-row"><b>Text</b><span>+1 (718) 555-0114</span></div>
+      <div class="hp-channel-row"><b>Instagram DM</b><span>@brizion</span></div>
+    </div>
+  </aside>
+</div></section>
+
+<section class="hp-promise"><div class="wrap">
+  <h2>Our <em>promise</em> to you.</h2>
+  <div class="hp-promise-grid">
+    <div><b>30-day returns</b><p>On everything. Even opened product. Even subscriptions.</p></div>
+    <div><b>Free reship</b><p>If the carrier loses it, we ship another one. No claim required from you.</p></div>
+    <div><b>Reaction refund</b><p>If your skin reacts to anything, we refund in full and help you find a better fit.</p></div>
+    <div><b>Honest comms</b><p>No hidden retention scripts, no auto-charges you can't escape. Ever.</p></div>
+  </div>
+</div></section>
+
+<footer class="foot"><div class="wrap">
+  <div class="foot-grid">
+    <div><div class="foot-wm">BRIZION</div><p class="foot-tag">Dermatologist-grade skincare. Real ingredients. Real results.</p></div>
+    <div><h4>Shop</h4><ul><li><a href="shop.html">Best Sellers</a></li><li><a href="shop.html">Serums</a></li><li><a href="shop.html">Moisturizers</a></li><li><a href="shop.html">Cleansers</a></li><li><a href="shop.html">Bundles</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="contact.html" class="on">Contact</a></li><li><a href="contact.html">Shipping</a></li><li><a href="contact.html">Returns</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+    <div><h4>Brand</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="science.html">Science</a></li><li><a href="journal.html">Journal</a></li><li><a href="about.html">Sustainability</a></li></ul></div>
+  </div>
+  <div class="foot-bot"><span>© 2026 Brizion. All rights reserved.</span><span>Privacy · Terms · Accessibility</span></div>
+</div></footer>
+</body></html>

@@ -1,0 +1,25 @@
+@import './brizion-tokens.css';
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--brz-bg-page);
+  color: var(--brz-fg-1);
+  font-family: var(--brz-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+button { font-family: inherit; }
+
+img { max-width: 100%; display: block; }
+
+.brz-wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+
+@media (max-width: 768px) {
+  .brz-wrap { padding: 0 24px; }
+}
