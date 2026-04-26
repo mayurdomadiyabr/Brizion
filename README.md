@@ -51,13 +51,48 @@ Built on Next.js 15 (App Router, RSC, async params) with React 19.
 - `/{locale}/products/{slug}` — PDP (statically generated for every locale × product).
 - `/sitemap.xml`, `/robots.txt`, `/llms.txt` — global.
 
-## Run
+## Payments (Stripe)
+- Server-side checkout: `POST /api/checkout` creates a Stripe Checkout Session.
+  Re-validates products + prices server-side from `src/lib/products.ts`; the
+  client never decides the amount charged.
+- Currency is locale-driven (USD / CAD / INR via `Intl.NumberFormat`).
+- Webhook: `POST /api/stripe/webhook` verifies the `stripe-signature` header
+  using `STRIPE_WEBHOOK_SECRET` (raw-body verified, no body parser).
+- Success page (`/[locale]/success`) retrieves the session and clears the cart.
+
+## Cart
+- Client-side React Context (`src/components/CartProvider.tsx`).
+- Persists to `localStorage` under `brz-cart-v1`; hydration-safe.
+- Live cart count in the nav, add-to-cart on the PDP, full edit/remove on `/cart`.
+
+## Production hardening
+- Security headers in `next.config.mjs`: HSTS, X-Frame-Options, X-Content-Type-Options,
+  Referrer-Policy, Permissions-Policy. `poweredByHeader` disabled.
+- Server-side input validation with `zod` on every API route.
+- Lazy Stripe init so missing keys produce a clear 500, not a build failure.
+- Global `error.tsx` and `loading.tsx` boundaries.
+
+## Run locally
 ```bash
-cp .env.example .env.local      # set NEXT_PUBLIC_SITE_URL
+cp .env.example .env.local
+# Required:
+#   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+#   STRIPE_SECRET_KEY=sk_test_xxx
+#   STRIPE_WEBHOOK_SECRET=whsec_xxx (only needed for webhook)
 npm install
 npm run dev                     # http://localhost:3000
-npm run build && npm start      # production
+npm run build && npm start      # production build
 ```
+
+## Deploy (Vercel)
+1. Push to GitHub (already done).
+2. Import the repo at https://vercel.com/new.
+3. Add the env vars listed above to **Settings → Environment Variables**.
+4. After deploy, set the Stripe webhook endpoint to `https://<your-domain>/api/stripe/webhook`
+   and copy its signing secret into `STRIPE_WEBHOOK_SECRET`.
+5. Listen for `checkout.session.completed` and `charge.refunded`.
+
+For local webhook testing: `stripe listen --forward-to localhost:3000/api/stripe/webhook`.
 
 ## Design System
 The original Brizion design system files (`assets/`, `fonts/`, `ui_kits/`,

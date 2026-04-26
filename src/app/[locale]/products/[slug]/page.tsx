@@ -5,6 +5,7 @@ import { isLocale, type Locale, formatPrice, getCountry, LOCALES } from '@/lib/l
 import { buildMetadata } from '@/lib/seo';
 import { JsonLd, breadcrumbsLd, productLd } from '@/lib/jsonld';
 import { PRODUCTS, getProduct } from '@/lib/products';
+import { AddToCart } from '@/components/AddToCart';
 
 export function generateStaticParams() {
   const out: { locale: string; slug: string }[] = [];
@@ -135,22 +136,7 @@ export default async function ProductPage({
                 · {country.taxLabel}
               </span>
             </div>
-            <button
-              style={{
-                background: 'var(--brz-ink)',
-                color: '#fff',
-                padding: '16px 28px',
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                border: 'none',
-                cursor: 'pointer',
-                borderRadius: 999,
-              }}
-            >
-              Add to cart
-            </button>
+            <AddToCart product={product} />
             <div
               style={{
                 marginTop: 32,

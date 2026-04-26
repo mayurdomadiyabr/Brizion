@@ -1,10 +1,14 @@
+'use client';
+
 import Link from 'next/link';
 import { Search, User, ShoppingBag } from 'lucide-react';
 import type { Locale } from '@/lib/locales';
 import { CountrySelector } from './CountrySelector';
+import { useCart } from './CartProvider';
 
 export function Nav({ locale }: { locale: Locale }) {
   const base = `/${locale}`;
+  const cart = useCart();
   const link = (href: string, label: string) => (
     <Link
       href={`${base}${href}`}
@@ -83,7 +87,7 @@ export function Nav({ locale }: { locale: Locale }) {
           }}
         >
           <ShoppingBag size={18} strokeWidth={1.5} />
-          <span>Cart · 0</span>
+          <span>Cart · {cart.hydrated ? cart.count : 0}</span>
         </Link>
       </div>
     </nav>

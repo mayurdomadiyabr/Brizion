@@ -6,6 +6,7 @@ import { JsonLd, websiteLd } from '@/lib/jsonld';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { AnnouncementBar } from '@/components/AnnouncementBar';
+import { CartProvider } from '@/components/CartProvider';
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -38,12 +39,12 @@ export default async function LocaleLayout({
   const country = getCountry(locale);
 
   return (
-    <>
+    <CartProvider>
       <JsonLd data={websiteLd(locale)} />
       <AnnouncementBar locale={locale} />
       <Nav locale={locale} />
       <main>{children}</main>
       <Footer locale={locale} country={country} />
-    </>
+    </CartProvider>
   );
 }
