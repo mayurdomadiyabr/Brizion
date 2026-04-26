@@ -251,6 +251,314 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* Promise strip */}
+      <section style={{ padding: '36px 0', borderBottom: '1px solid var(--brz-border-hair)' }}>
+        <div
+          className="brz-wrap"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, minmax(0,1fr))',
+            gap: 40,
+            alignItems: 'center',
+          }}
+        >
+          {[
+            ['Clinically Proven', '3rd party tested'],
+            ['Derm Tested', 'Sensitive skin safe'],
+            ['Fast Results', 'Visible in 8 weeks'],
+            ['Fragrance Free', 'Made for real skin'],
+          ].map(([h, s]) => (
+            <div key={h} style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+              <svg
+                width={22}
+                height={22}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <div>
+                <strong style={{ display: 'block', fontSize: 13, fontWeight: 700 }}>{h}</strong>
+                <span style={{ fontSize: 11, color: 'var(--brz-fg-2)', letterSpacing: '0.04em' }}>
+                  {s}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Editorial split — image + dermatologist message */}
+      <section
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          minHeight: 620,
+        }}
+      >
+        <div
+          style={{
+            background: "#2A2A2A url('/assets/bg-grey-800.jpg') center/cover",
+          }}
+        />
+        <div
+          style={{
+            padding: '100px 80px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'var(--brz-fg-2)',
+            }}
+          >
+            Real results
+          </div>
+          <h2
+            style={{
+              fontFamily: 'var(--brz-font-display)',
+              fontWeight: 600,
+              fontSize: 54,
+              lineHeight: 1.08,
+              letterSpacing: '-0.02em',
+              margin: '18px 0 24px',
+            }}
+          >
+            Formulated with{' '}
+            <em
+              style={{ fontFamily: 'var(--brz-font-serif)', fontStyle: 'italic', fontWeight: 500 }}
+            >
+              dermatologists,
+            </em>{' '}
+            tested on real skin.
+          </h2>
+          <p style={{ fontSize: 16, color: 'var(--brz-fg-2)', lineHeight: 1.65, marginBottom: 28, maxWidth: 460 }}>
+            Every Brizion product is developed over 18+ months with board-certified dermatologists
+            and put through independent clinical trials. No filler, no empty promises — just proof.
+          </p>
+          <a href={`/${locale}/science`} style={{ alignSelf: 'flex-start', textDecoration: 'none' }}>
+            <button className="btn-outline">Read the science →</button>
+          </a>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section style={{ padding: '120px 0', borderTop: '1px solid var(--brz-border-hair)' }}>
+        <div className="brz-wrap">
+          <div style={{ marginBottom: 56 }}>
+            <div
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: 'var(--brz-fg-2)',
+              }}
+            >
+              Real women, real results
+            </div>
+            <h2
+              style={{
+                fontFamily: 'var(--brz-font-display)',
+                fontWeight: 600,
+                fontSize: 'clamp(36px, 4.2vw, 56px)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.02em',
+                margin: '12px 0 0',
+              }}
+            >
+              Over 100,000{' '}
+              <em
+                style={{
+                  fontFamily: 'var(--brz-font-serif)',
+                  fontStyle: 'italic',
+                  fontWeight: 500,
+                }}
+              >
+                reviews
+              </em>{' '}
+              and counting.
+            </h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 28 }}>
+            {[
+              {
+                name: 'Re’gan',
+                product: 'Firm & Lift',
+                quote:
+                  "I've been using it consistently and my skin feels way smoother and more hydrated. I can tell it's firming things up little by little.",
+              },
+              {
+                name: 'Eileen',
+                product: 'Renewal Cream',
+                quote:
+                  'My absolute holy grail product. This gave me back my confidence as a 57-year-old. My neck literally looks a decade younger.',
+              },
+              {
+                name: 'Faith',
+                product: 'Golden Hour Oil',
+                quote:
+                  'I looked at my before and after, and my skin looked smoother, firmer — in a way I did not expect.',
+              },
+            ].map((r) => (
+              <article
+                key={r.name}
+                style={{
+                  background: '#fff',
+                  border: '1px solid var(--brz-n-200)',
+                  padding: '36px 32px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minHeight: 260,
+                }}
+              >
+                <div style={{ letterSpacing: '0.15em', fontSize: 13, marginBottom: 18 }}>★★★★★</div>
+                <p
+                  style={{
+                    fontFamily: 'var(--brz-font-serif)',
+                    fontStyle: 'italic',
+                    fontWeight: 500,
+                    fontSize: 18,
+                    lineHeight: 1.45,
+                    color: 'var(--brz-ink)',
+                    flex: 1,
+                    margin: '0 0 24px',
+                  }}
+                >
+                  “{r.quote}”
+                </p>
+                <div
+                  style={{
+                    paddingTop: 18,
+                    borderTop: '1px solid var(--brz-n-100)',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'baseline',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: '0.22em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {r.name}
+                  </span>
+                  <span style={{ fontSize: 10, color: 'var(--brz-fg-3)' }}>{r.product}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ingredients */}
+      <section style={{ padding: '120px 0', background: 'var(--brz-ink)', color: '#fff' }}>
+        <div className="brz-wrap">
+          <div
+            style={{
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.6)',
+              textAlign: 'center',
+            }}
+          >
+            What&apos;s inside
+          </div>
+          <h2
+            style={{
+              fontFamily: 'var(--brz-font-display)',
+              fontWeight: 600,
+              fontSize: 64,
+              lineHeight: 1.02,
+              letterSpacing: '-0.02em',
+              textAlign: 'center',
+              maxWidth: 900,
+              margin: '14px auto 72px',
+            }}
+          >
+            Active ingredients.{' '}
+            <em
+              style={{ fontFamily: 'var(--brz-font-serif)', fontStyle: 'italic', fontWeight: 500 }}
+            >
+              Nothing else.
+            </em>
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 28 }}>
+            {[
+              ['01', 'Biomimetic Peptide', '4% concentrate that firms & lifts over 8 weeks.', 'Clinically proven'],
+              ['02', 'Niacinamide 5%', 'Smooths texture and balances tone from day one.', 'Dermatologist tested'],
+              ['03', 'Hyaluronic Acid', 'Multi-weight HA for deep, lasting hydration.', 'Vegan'],
+              ['04', 'Squalane', 'Restores barrier without clogging pores.', 'Non-comedogenic'],
+            ].map(([idx, name, desc, badge]) => (
+              <div
+                key={idx}
+                style={{
+                  border: '1px solid rgba(255,255,255,0.16)',
+                  padding: '32px 26px',
+                  minHeight: 240,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontFamily: 'ui-monospace, Menlo, monospace',
+                      fontSize: 11,
+                      color: 'rgba(255,255,255,0.5)',
+                      letterSpacing: '0.08em',
+                    }}
+                  >
+                    Ingredient {idx}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--brz-font-display)',
+                      fontWeight: 600,
+                      fontSize: 26,
+                      letterSpacing: '-0.01em',
+                      margin: '20px 0 10px',
+                    }}
+                  >
+                    {name}
+                  </div>
+                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, margin: 0 }}>
+                    {desc}
+                  </p>
+                </div>
+                <div
+                  style={{
+                    fontFamily: 'ui-monospace, Menlo, monospace',
+                    fontSize: 11,
+                    color: 'rgba(255,255,255,0.5)',
+                    letterSpacing: '0.08em',
+                    marginTop: 24,
+                  }}
+                >
+                  {badge}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ — written in plain Q&A for AEO/GEO answer extraction */}
       <section style={{ padding: '120px 0' }}>
         <div className="brz-wrap" style={{ maxWidth: 880 }}>

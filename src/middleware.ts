@@ -3,21 +3,16 @@ import { LOCALES, DEFAULT_LOCALE, type Locale } from './lib/locales';
 
 const PUBLIC_FILE = /\.(.*)$/;
 
-function pickLocaleFromHeader(req: NextRequest): Locale {
-  // Cookie has highest priority
+/**
+ * Pick the locale to use when the URL has no locale prefix.
+ * Default behaviour: always redirect to /us. The only way to override
+ * is by setting the `brz-locale` cookie via the country selector.
+ */
+function pickLocale(req: NextRequest): Locale {
   const cookie = req.cookies.get('brz-locale')?.value;
   if (cookie && (LOCALES as readonly string[]).includes(cookie)) {
     return cookie as Locale;
   }
-  // Country header set by Vercel/edge providers
-  const country = req.headers.get('x-vercel-ip-country')?.toLowerCase();
-  if (country === 'us') return 'us';
-  if (country === 'ca') return 'ca';
-  if (country === 'in') return 'in';
-  // Fall back to Accept-Language
-  const accept = req.headers.get('accept-language')?.toLowerCase() ?? '';
-  if (accept.includes('en-in') || accept.includes('hi')) return 'in';
-  if (accept.includes('en-ca') || accept.includes('fr-ca')) return 'ca';
   return DEFAULT_LOCALE;
 }
 
@@ -40,7 +35,7 @@ export function middleware(req: NextRequest) {
   const hasLocale = !!first && (LOCALES as readonly string[]).includes(first);
 
   if (!hasLocale) {
-    const locale = pickLocaleFromHeader(req);
+    const locale = pickLocale(req);
     const url = req.nextUrl.clone();
     url.pathname = `/${locale}${pathname === '/' ? '' : pathname}`;
     return NextResponse.redirect(url);
